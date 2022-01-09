@@ -18,7 +18,6 @@
 		75AAFBBE278B2F9F00B04473 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75AAFBA8278B2F9F00B04473 /* Assets.xcassets */; };
 		75AAFBBF278B2F9F00B04473 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75AAFBA8278B2F9F00B04473 /* Assets.xcassets */; };
 		75AAFBCF278B39F700B04473 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AAFBCD278B39F700B04473 /* Person+CoreDataClass.swift */; };
-		75AAFBD6278B413D00B04473 /* TestPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AAFBD5278B413D00B04473 /* TestPersistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +36,6 @@
 		75AAFBD1278B3AE000B04473 /* generatedClasses.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = generatedClasses.png; sourceTree = "<group>"; };
 		75AAFBD3278B3C9600B04473 /* codeGen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = codeGen.png; sourceTree = "<group>"; };
 		75AAFBD4278B3F1600B04473 /* categoryExtension.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = categoryExtension.png; sourceTree = "<group>"; };
-		75AAFBD5278B413D00B04473 /* TestPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPersistence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +65,6 @@
 				75AAFBA5278B2F9E00B04473 /* Core_Data_DemoApp.swift */,
 				75AAFBA6278B2F9E00B04473 /* ContentView.swift */,
 				75AAFBA7278B2F9E00B04473 /* Persistence.swift */,
-				75AAFBD5278B413D00B04473 /* TestPersistence.swift */,
 				75AAFBA8278B2F9F00B04473 /* Assets.xcassets */,
 				75AAFBA3278B2F9E00B04473 /* Core_Data_Demo.xcdatamodeld */,
 				75AAFBAE278B2F9F00B04473 /* Products */,
@@ -203,7 +200,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				75AAFBB6278B2F9F00B04473 /* Core_Data_Demo.xcdatamodeld in Sources */,
-				75AAFBD6278B413D00B04473 /* TestPersistence.swift in Sources */,
 				75AAFBBC278B2F9F00B04473 /* Persistence.swift in Sources */,
 				75AAFBCF278B39F700B04473 /* Person+CoreDataClass.swift in Sources */,
 				75AAFBB8278B2F9F00B04473 /* Core_Data_DemoApp.swift in Sources */,
