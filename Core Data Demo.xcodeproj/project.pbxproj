@@ -17,6 +17,8 @@
 		75AAFBBD278B2F9F00B04473 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AAFBA7278B2F9E00B04473 /* Persistence.swift */; };
 		75AAFBBE278B2F9F00B04473 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75AAFBA8278B2F9F00B04473 /* Assets.xcassets */; };
 		75AAFBBF278B2F9F00B04473 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75AAFBA8278B2F9F00B04473 /* Assets.xcassets */; };
+		75AAFBCF278B39F700B04473 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AAFBCD278B39F700B04473 /* Person+CoreDataClass.swift */; };
+		75AAFBD6278B413D00B04473 /* TestPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AAFBD5278B413D00B04473 /* TestPersistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +29,15 @@
 		75AAFBA8278B2F9F00B04473 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75AAFBAD278B2F9F00B04473 /* Core Data Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Core Data Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75AAFBB3278B2F9F00B04473 /* Core Data Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Core Data Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		75AAFBB5278B2F9F00B04473 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		75AAFBC8278B2FF800B04473 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		75AAFBCA278B333C00B04473 /* xcuserdata_screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xcuserdata_screenshot.png; sourceTree = "<group>"; };
+		75AAFBCB278B35A800B04473 /* array_definition.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = array_definition.png; sourceTree = "<group>"; };
+		75AAFBCC278B37FD00B04473 /* NSManagedObjectSubclass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NSManagedObjectSubclass.png; sourceTree = "<group>"; };
+		75AAFBCD278B39F700B04473 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
+		75AAFBD1278B3AE000B04473 /* generatedClasses.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = generatedClasses.png; sourceTree = "<group>"; };
+		75AAFBD3278B3C9600B04473 /* codeGen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = codeGen.png; sourceTree = "<group>"; };
+		75AAFBD4278B3F1600B04473 /* categoryExtension.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = categoryExtension.png; sourceTree = "<group>"; };
+		75AAFBD5278B413D00B04473 /* TestPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPersistence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,22 +61,17 @@
 		75AAFB9D278B2F9E00B04473 = {
 			isa = PBXGroup;
 			children = (
-				75AAFBA2278B2F9E00B04473 /* Shared */,
-				75AAFBB4278B2F9F00B04473 /* macOS */,
-				75AAFBAE278B2F9F00B04473 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		75AAFBA2278B2F9E00B04473 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
+				75AAFBC8278B2FF800B04473 /* README.md */,
+				75AAFBC9278B330A00B04473 /* static */,
+				75AAFBD2278B3B3A00B04473 /* Models */,
 				75AAFBA5278B2F9E00B04473 /* Core_Data_DemoApp.swift */,
 				75AAFBA6278B2F9E00B04473 /* ContentView.swift */,
 				75AAFBA7278B2F9E00B04473 /* Persistence.swift */,
+				75AAFBD5278B413D00B04473 /* TestPersistence.swift */,
 				75AAFBA8278B2F9F00B04473 /* Assets.xcassets */,
 				75AAFBA3278B2F9E00B04473 /* Core_Data_Demo.xcdatamodeld */,
+				75AAFBAE278B2F9F00B04473 /* Products */,
 			);
-			path = Shared;
 			sourceTree = "<group>";
 		};
 		75AAFBAE278B2F9F00B04473 /* Products */ = {
@@ -78,12 +83,25 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		75AAFBB4278B2F9F00B04473 /* macOS */ = {
+		75AAFBC9278B330A00B04473 /* static */ = {
 			isa = PBXGroup;
 			children = (
-				75AAFBB5278B2F9F00B04473 /* macOS.entitlements */,
+				75AAFBCB278B35A800B04473 /* array_definition.png */,
+				75AAFBCA278B333C00B04473 /* xcuserdata_screenshot.png */,
+				75AAFBCC278B37FD00B04473 /* NSManagedObjectSubclass.png */,
+				75AAFBD1278B3AE000B04473 /* generatedClasses.png */,
+				75AAFBD3278B3C9600B04473 /* codeGen.png */,
+				75AAFBD4278B3F1600B04473 /* categoryExtension.png */,
 			);
-			path = macOS;
+			path = static;
+			sourceTree = "<group>";
+		};
+		75AAFBD2278B3B3A00B04473 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				75AAFBCD278B39F700B04473 /* Person+CoreDataClass.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,7 +203,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				75AAFBB6278B2F9F00B04473 /* Core_Data_Demo.xcdatamodeld in Sources */,
+				75AAFBD6278B413D00B04473 /* TestPersistence.swift in Sources */,
 				75AAFBBC278B2F9F00B04473 /* Persistence.swift in Sources */,
+				75AAFBCF278B39F700B04473 /* Person+CoreDataClass.swift in Sources */,
 				75AAFBB8278B2F9F00B04473 /* Core_Data_DemoApp.swift in Sources */,
 				75AAFBBA278B2F9F00B04473 /* ContentView.swift in Sources */,
 			);
