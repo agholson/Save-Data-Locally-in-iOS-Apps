@@ -308,7 +308,8 @@ TextField("Filter Text", text: $filterByText, onEditingChanged: { _ in
 })
 ```
 
-However, in order to make a good user experience, we would prefer to fetch the data for every change to this list.
+However, in order to make a good user experience, one in which results change for every character typed,
+we would prefer to fetch the data for every change to this list.
 We can achieve this through an `onChange` modifier of the `VStack` that displays the data.
 ```
 //         Whenever the filterByText value changes, it will retrieve the data from the database
@@ -317,3 +318,75 @@ We can achieve this through an `onChange` modifier of the `VStack` that displays
     fetchData()
 }
 ``` 
+
+# Relationships 
+You can add relationships between entitites, and make them one to one as the default
+stands, or make it one to many under the `.xcdatamodel` file.
+![Many to one relationship](statics/many_relationships.png)
+
+Likewise, you must then setup a one to many relationship frome the Person 
+entity with the family entity in order to maintain the consistency in 
+the Core Data deserializations.
+![Person to family relationship](static/familyRelationship.png)
+
+In the code, you can access the various properties that represent these relationships. So to make a particular person
+belong to a particular family, we can do it in the following way:
+```
+// Create new Family object within the NSManaged Object context
+let f = Family(context: viewContext)
+// Set the name
+f.name = "Robinsons Family"
+
+// Create a person in the same context
+let p = Person(context: viewContext)
+
+// Associate this person with this family
+p.family = f
+
+// Save this information
+try! viewContext.save()
+```
+
+By the same token, we could use a method from the Family side to add this person to this family: 
+```
+// Add person from the family side
+f.addToMembers(p)
+```
+
+The `addToMembers` method was automatically generated, and you can view this extension/ its details by selecting the 
+Manual codegen, then saving the files. You may have to save both the Person and Family files, then move them to the 
+Models folder.
+
+The code for the Family/ its methods are as follows:
+```
+extension Family {
+
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Family> {
+        return NSFetchRequest<Family>(entityName: "Family")
+    }
+
+    @NSManaged public var name: String?
+    @NSManaged public var members: NSSet?
+
+}
+
+// MARK: Generated accessors for members
+extension Family {
+
+    @objc(addMembersObject:)
+    @NSManaged public func addToMembers(_ value: Person)
+
+    @objc(removeMembersObject:)
+    @NSManaged public func removeFromMembers(_ value: Person)
+
+    @objc(addMembers:)
+    @NSManaged public func addToMembers(_ values: NSSet)
+
+    @objc(removeMembers:)
+    @NSManaged public func removeFromMembers(_ values: NSSet)
+
+}
+```
+
+
+

@@ -19,98 +19,136 @@ struct ContentView: View {
 //    var people: FetchedResults<Person>
     
     // Initialize empty arraty of people
-    @State var people = [Person]()
+//    @State var people = [Person]()
     
     // Binding to filter by this text
-    @State var filterByText = ""
+//    @State var filterByText = ""
+    
+    // Retrieve the collection of families from Core Data
+    @FetchRequest(sortDescriptors: [])
+    var families: FetchedResults<Family>
     
     var body: some View {
         VStack {
             // MARK: - Add Item
             Button(action: addItem) {
-                Label("Add Item", systemImage: "plus")
+                Label("Create Family", systemImage: "plus")
             }
             
             // MARK: - Filter
             // Filters text every time the person edits the filter field and types/ stops typing
-            TextField("Filter Text", text: $filterByText, onEditingChanged: { _ in
-                // Every change to the data it fetches the list
-                fetchData()
-            })
+//            TextField("Filter Text", text: $filterByText, onEditingChanged: { _ in
+//                // Every change to the data it fetches the list
+//                fetchData()
+//            })
 //                .border(Color.black, width: 1)
-            TextField("Search for a name", text: $filterByText)
+//            TextField("Search for a name", text: $filterByText)
             
             
             List {
                 // MARK: - Display People Fetched from Data Store
                 // Loop through the array of Person objects above
-                ForEach(people) { person in
-                    HStack {
+                ForEach(families) { family in
+//                    HStack {
                         // Display name
-                        Text(person.name ?? "No name")
+                        Text("\(family.name ?? ""), member count: \(family.members?.count ?? 0)")
                         // Display age
-                        Text(String(person.age))
+//                        Text(String(person.age))
                         // When someone taps on this, we change the name to Joe, then save that
-                            .onTapGesture {
-                                // Change name to Joe
-                                person.name = "Joe"
-                                
-//                                person.name = "Tom"
-//                                viewContext.delete(person)
-                                try! viewContext.save()
-                            }
-                    }
+//                            .onTapGesture {
+//                                // Change name to Joe
+//                                person.name = "Joe"
+//
+////                                person.name = "Tom"
+////                                viewContext.delete(person)
+//                                try! viewContext.save()
+//                            }
+//                    }
                     
                 }
             }
         }
 //         Whenever the filterByText value changes, it will retrieve the data from the database
-        .onChange(of: filterByText) { newValue in
-            // Fetches core data
-            fetchData()
-        }
+//        .onChange(of: filterByText) { newValue in
+//            // Fetches core data
+//            fetchData()
+//        }
     }
+    
+    func relationshipsSampleCode() {
+        // Create new Family object within the NSManaged Object context
+        let f = Family(context: viewContext)
+        // Set the name
+        f.name = "Robinsons Family"
+        
+        // Create a person in the same context
+        let p = Person(context: viewContext)
+        
+        // Associate this person with this family
+//        p.family = f
+        
+        // Add person from the family side
+        f.addToMembers(p)
+        
+        // Save this information
+        try! viewContext.save()
+        
+    }
+    
         
     /*
      Fetches all of the Persons in the Core Data model based on the user's
      filter in the filterByText property
      */
-    func fetchData() {
-        // Create fetch request
-        let request = Person.fetchRequest()
-        
-        // Set sort descriptors and predicates
-        request.sortDescriptors = [NSSortDescriptor(key: "age", ascending: true)]
-        
-        // The percent at signs will be replaced by our filterByText value
-        request.predicate = NSPredicate(format: "name contains %@", filterByText)
-        
-        // Execute the query in the main thread, because it changes the UI
-        DispatchQueue.main.async {
-            do {
-                // Tries to execute the request
-                 let results = try viewContext.fetch(request)
-                
-                // Returns list of people and assigns them to the Person array
-                self.people = results
-                
-            } catch {
-                // Print any errors
-                print(error.localizedDescription)
-            }
-        }
-       
-        
-    }
+//    func fetchData() {
+//        // Create fetch request
+//        let request = Person.fetchRequest()
+//
+//        // Set sort descriptors and predicates
+//        request.sortDescriptors = [NSSortDescriptor(key: "age", ascending: true)]
+//
+//        // The percent at signs will be replaced by our filterByText value
+//        request.predicate = NSPredicate(format: "name contains %@", filterByText)
+//
+//        // Execute the query in the main thread, because it changes the UI
+//        DispatchQueue.main.async {
+//            do {
+//                // Tries to execute the request
+//                 let results = try viewContext.fetch(request)
+//
+//                // Returns list of people and assigns them to the Person array
+//                self.people = results
+//
+//            } catch {
+//                // Print any errors
+//                print(error.localizedDescription)
+//            }
+//        }
+//    }
     
     private func addItem() {
+        // Declare new Family object
+        let family = Family(context: viewContext)
         
-        // Initializing the person, we can also pass in the NSManaged Object Context
-        // This specifies that we want to store this object in Core Data
-        let p = Person(context: viewContext)
-        // Make the age random using a random 64-bit integer
-        p.age = Int64.random(in: 1...80)
-        p.name = "Tom"
+        // Set a random name for this family
+        family.name = String("Family #\(Int.random(in: 0...20))")
+        
+        // Randomly set the number of members in the family
+        let numberOfMembers = Int.random(in: 0...5)
+        
+        // Create a person for every member of the family
+        for _ in 0...numberOfMembers {
+            // Initializing the person, we can also pass in the NSManaged Object Context
+            // This specifies that we want to store this object in Core Data
+            let p = Person(context: viewContext)
+            
+            // Make the age random using a random 64-bit integer
+            p.age = Int64.random(in: 1...80)
+            p.name = "Tom"
+            
+            // Associate person with the family
+            p.family = family
+        }
         
         // Save to the data store
         do {
@@ -119,19 +157,7 @@ struct ContentView: View {
         catch {
             // Catch any errors
         }
-        //        withAnimation {
-        //            let newItem = Item(context: viewContext)
-        //            newItem.timestamp = Date()
-        //
-        //            do {
-        //                try viewContext.save()
-        //            } catch {
-        //                // Replace this implementation with code to handle the error appropriately.
-        //                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        //                let nsError = error as NSError
-        //                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        //            }
-        //        }
+       
     }
     
 
